@@ -1,0 +1,2318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🍃 Spring Boot 3.4+ Guía Completa</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" id="highlight-theme">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>🍃 Spring Boot 3.4+ Guía Completa</h1>
+      <p class="subtitle">Referencia Profesional: Java, Microservicios, Cloud &amp; DevOps</p>
+      <div class="build-tool-toggle">
+        <button class="build-tool-btn active" data-build="maven">📦 Maven</button>
+        <button class="build-tool-btn" data-build="gradle">🐘 Gradle</button>
+      </div>
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="🔍 Buscar ejemplos, configuraciones..." aria-label="Buscar">
+        <div class="search-results" style="display: none;"></div>
+      </div>
+    </header>
+
+    <div class="main-layout">
+      <aside class="sidebar">
+        <nav class="nav-menu">
+          <button class="nav-item active" data-section="setup">
+            <span class="nav-icon">🔧</span>
+            <span class="nav-text">Setup</span>
+          </button>
+          <button class="nav-item" data-section="apis">
+            <span class="nav-icon">🌐</span>
+            <span class="nav-text">REST APIs</span>
+          </button>
+          <button class="nav-item" data-section="security">
+            <span class="nav-icon">🔐</span>
+            <span class="nav-text">Security</span>
+          </button>
+          <button class="nav-item" data-section="database">
+            <span class="nav-icon">🗄️</span>
+            <span class="nav-text">SQL DBs</span>
+          </button>
+          <button class="nav-item" data-section="nosql">
+            <span class="nav-icon">📦</span>
+            <span class="nav-text">NoSQL</span>
+          </button>
+
+          <button class="nav-item" data-section="microservices">
+            <span class="nav-icon">🏗️</span>
+            <span class="nav-text">Microservicios</span>
+          </button>
+          <button class="nav-item" data-section="docker">
+            <span class="nav-icon">🐳</span>
+            <span class="nav-text">Docker/K8s</span>
+          </button>
+          <button class="nav-item" data-section="cloud">
+            <span class="nav-icon">☁️</span>
+            <span class="nav-text">Cloud</span>
+          </button>
+          <button class="nav-item" data-section="cicd">
+            <span class="nav-icon">🔄</span>
+            <span class="nav-text">CI/CD</span>
+          </button>
+          <button class="nav-item" data-section="testing">
+            <span class="nav-icon">✅</span>
+            <span class="nav-text">Testing</span>
+          </button>
+          <button class="nav-item" data-section="performance">
+            <span class="nav-icon">⚡</span>
+            <span class="nav-text">Performance</span>
+          </button>
+          <button class="nav-item" data-section="commands">
+            <span class="nav-icon">💻</span>
+            <span class="nav-text">Commands</span>
+          </button>
+        </nav>
+
+        <div class="best-practices">
+          <h3>✨ Best Practices</h3>
+          <ul>
+            <li>✅ Usa DTOs para APIs</li>
+            <li>✅ Valida con @Valid</li>
+            <li>✅ Implementa Circuit Breaker</li>
+            <li>✅ Cachea datos frecuentes</li>
+            <li>❌ No expongas entidades</li>
+            <li>❌ No ignores validación</li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="content">
+        <div class="breadcrumb" aria-label="Breadcrumb navigation">
+          <span class="breadcrumb-home">🏠 Inicio</span>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-current">Setup &amp; Configuración</span>
+        </div>
+        
+        <section id="setup" class="section active">
+          <h2>🔧 Setup &amp; Configuración Completa</h2>
+          
+          <div class="content-block">
+            <h3>Configuración de Dependencias</h3>
+            <div class="example-toggle">
+              <button class="example-btn active" data-example="basic">📚 Ejemplo Básico</button>
+              <button class="example-btn" data-example="production">🏢 Producción/Enterprise</button>
+            </div>
+            
+            <div class="example-content basic active" data-build="maven">
+              <h4>Maven - pom.xml Básico</h4>
+              <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+    &lt;parent&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+        &lt;version&gt;3.4.3&lt;/version&gt;
+    &lt;/parent&gt;
+
+    &lt;groupId&gt;com.example&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-basic&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+
+    &lt;properties&gt;
+        &lt;java.version&gt;21&lt;/java.version&gt;
+    &lt;/properties&gt;
+
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-j&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/project&gt;</code></pre>
+            </div>
+            
+            <div class="example-content basic" data-build="gradle" style="display:none;">
+              <h4>Gradle - build.gradle Básico</h4>
+              <pre><code class="language-gradle">plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.3'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.example'
+version = '1.0.0'
+sourceCompatibility = '21'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+}</code></pre>
+            </div>
+            
+            <div class="example-content production" data-build="maven" style="display:none;">
+              <h4>Maven - pom.xml Producción/Enterprise</h4>
+              <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0"&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;parent&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+        &lt;version&gt;3.4.3&lt;/version&gt;
+    &lt;/parent&gt;
+
+    &lt;groupId&gt;com.example&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-enterprise&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+
+    &lt;properties&gt;
+        &lt;java.version&gt;21&lt;/java.version&gt;
+        &lt;spring-cloud.version&gt;2024.0.0&lt;/spring-cloud.version&gt;
+    &lt;/properties&gt;
+
+    &lt;dependencies&gt;
+        &lt;!-- Web &amp; Validation --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        
+        &lt;!-- Database --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-j&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        
+        &lt;!-- Migrations --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.flywaydb&lt;/groupId&gt;
+            &lt;artifactId&gt;flyway-core&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.flywaydb&lt;/groupId&gt;
+            &lt;artifactId&gt;flyway-mysql&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        
+        &lt;!-- Security --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;io.jsonwebtoken&lt;/groupId&gt;
+            &lt;artifactId&gt;jjwt-api&lt;/artifactId&gt;
+            &lt;version&gt;0.12.3&lt;/version&gt;
+        &lt;/dependency&gt;
+        
+        &lt;!-- Cache &amp; Redis --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        
+        &lt;!-- Monitoring --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;io.micrometer&lt;/groupId&gt;
+            &lt;artifactId&gt;micrometer-registry-prometheus&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        
+        &lt;!-- Tools --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        
+        &lt;!-- Testing --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.testcontainers&lt;/groupId&gt;
+            &lt;artifactId&gt;testcontainers&lt;/artifactId&gt;
+            &lt;version&gt;1.19.7&lt;/version&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+&lt;/project&gt;</code></pre>
+            </div>
+            
+            <div class="example-content production" data-build="gradle" style="display:none;">
+              <h4>Gradle - build.gradle Producción/Enterprise</h4>
+              <pre><code class="language-gradle">plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.3'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.example'
+version = '1.0.0'
+sourceCompatibility = '21'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    set('springCloudVersion', "2024.0.0")
+}
+
+dependencies {
+    // Web &amp; Validation
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    
+    // Database
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    
+    // Migrations
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-mysql'
+    
+    // Security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.3'
+    
+    // Cache
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    
+    // Monitoring
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+    
+    // Tools
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    
+    // Testing
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.testcontainers:testcontainers:1.19.7'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}</code></pre>
+            </div>
+            
+            <div class="info-box">
+              <strong>📦 Maven vs 🐘 Gradle:</strong><br>
+              <strong>Maven:</strong> mvn clean package | mvn spring-boot:run<br>
+              <strong>Gradle:</strong> gradle clean build | gradle bootRun
+            </div>
+          </div>
+
+          <div class="content-block">
+            <h3>application.yml - Configuración</h3>
+            <div class="example-toggle">
+              <button class="example-btn active" data-example="basic">📚 Ejemplo Básico</button>
+              <button class="example-btn" data-example="production">🏢 Producción/Enterprise</button>
+            </div>
+            
+            <div class="example-content basic active">
+              <h4>application.yml Básico</h4>
+              <pre><code class="language-yaml">spring:
+  application:
+    name: spring-boot-basic
+  datasource:
+    url: jdbc:mysql://localhost:3306/mydb
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+server:
+  port: 8080</code></pre>
+            </div>
+            
+            <div class="example-content production" style="display:none;">
+              <h4>application.yml Producción/Enterprise</h4>
+              <pre><code class="language-yaml">spring:
+  application:
+    name: spring-boot-enterprise
+  
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/${DB_NAME:mydb}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:password}
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 20000
+  
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+        jdbc:
+          batch_size: 20
+  
+  # MySQL
+  datasource:
+    url: jdbc:mysql://localhost:3306/mydb
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:password}
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 20000
+  
+  # Redis
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: 6379
+    jedis:
+      pool:
+        max-active: 20
+        max-idle: 10
+  
+  # MongoDB
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/mydb
+  
+  # Virtual Threads (Java 21)
+  threads:
+    virtual:
+      enabled: true
+
+server:
+  port: 8080
+  compression:
+    enabled: true
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true</code></pre>
+            <div class="tip-box">
+              <strong>💡 Tip:</strong> Usa variables de entorno para credenciales sensibles
+            </div>
+          </div>
+        </section>
+
+        <section id="apis" class="section">
+          <h2>🌐 REST APIs - Métodos Completos</h2>
+          
+          <div class="content-block">
+            <h3>GET - Obtener Usuarios</h3>
+            <div class="example-toggle">
+              <button class="example-btn active" data-example="basic">📚 Ejemplo Básico (Long ID)</button>
+              <button class="example-btn" data-example="production">🏢 Producción (UUID)</button>
+            </div>
+            
+            <div class="example-content basic active">
+              <h4>GET Básico con Long ID</h4>
+              <pre><code class="language-java">@RestController
+@RequestMapping("/api/users")
+@RequiredArgsConstructor
+public class UserController {
+    private final UserService userService;
+
+    @GetMapping("/{id}")
+    public ResponseEntity&lt;UserDto&gt; getUser(@PathVariable Long id) {
+        return ResponseEntity.of(userService.findById(id));
+    }
+    
+    @GetMapping
+    public ResponseEntity&lt;List&lt;UserDto&gt;&gt; getAllUsers() {
+        return ResponseEntity.ok(userService.findAll());
+    }
+}</code></pre>
+            </div>
+            
+            <div class="example-content production" style="display:none;">
+              <h4>GET Producción con UUID</h4>
+              <pre><code class="language-java">@RestController
+@RequestMapping("/api/v1/users")
+@Slf4j
+@RequiredArgsConstructor
+public class UserController {
+    private final UserService userService;
+    private final UserMapper userMapper;
+
+    @GetMapping("/{userId}")
+    public ResponseEntity&lt;UserDto&gt; getUserById(
+        @PathVariable @NotNull UUID userId
+    ) {
+        log.info("Fetching user: {}", userId);
+        
+        return userService.findById(userId)
+            .map(user -> {
+                log.debug("User found: {}", userId);
+                return ResponseEntity.ok(userMapper.toDto(user));
+            })
+            .orElseGet(() -> {
+                log.warn("User not found: {}", userId);
+                return ResponseEntity.notFound().build();
+            });
+    }
+    
+    @GetMapping
+    public ResponseEntity&lt;Page&lt;UserDto&gt;&gt; getAllUsers(
+        @RequestParam(defaultValue = "0") @PositiveOrZero int page,
+        @RequestParam(defaultValue = "20") @Positive int size
+    ) {
+        log.info("Fetching users - page: {}, size: {}", page, size);
+        Pageable pageable = PageRequest.of(page, size);
+        Page&lt;User&gt; users = userService.findAll(pageable);
+        return ResponseEntity.ok(users.map(userMapper::toDto));
+    }
+}</code></pre>
+            </div>
+            
+            <div class="comparison-box">
+              <strong>✅ Diferencias Clave:</strong><br>
+              <strong>Básico:</strong> Long ID, sin validación, sin logging<br>
+              <strong>Producción:</strong> UUID (distribuido), validación @NotNull, logging contextual, paginación
+          </div>
+
+          <div class="content-block">
+            <h3>POST - Crear Usuarios</h3>
+            <div class="example-toggle">
+              <button class="example-btn active" data-example="basic">📚 Ejemplo Básico (Long ID)</button>
+              <button class="example-btn" data-example="production">🏢 Producción (UUID)</button>
+            </div>
+            
+            <div class="example-content basic active">
+              <h4>POST Básico</h4>
+              <pre><code class="language-java">@PostMapping
+@ResponseStatus(HttpStatus.CREATED)
+public UserDto createUser(@Valid @RequestBody CreateUserRequest request) {
+    return userService.create(request);
+}
+
+// DTO Básico
+@Data
+public class CreateUserRequest {
+    @NotBlank
+    @Email
+    private String email;
+    
+    @NotBlank
+    private String name;
+}
+
+@Data
+public class UserDto {
+    private Long id;
+    private String email;
+    private String name;
+}</code></pre>
+            </div>
+            
+            <div class="example-content production" style="display:none;">
+              <h4>POST Producción con UUID</h4>
+              <pre><code class="language-java">@PostMapping
+@ResponseStatus(HttpStatus.CREATED)
+public ResponseEntity&lt;UserDto&gt; createUser(
+    @Valid @RequestBody CreateUserRequest request,
+    HttpServletRequest httpRequest
+) {
+    log.info("Creating user with email: {}", request.getEmail());
+    
+    try {
+        User createdUser = userService.create(request);
+        UserDto userDto = userMapper.toDto(createdUser);
+        
+        log.info("User created with ID: {}", createdUser.getId());
+        
+        return ResponseEntity
+            .created(URI.create("/api/v1/users/" + createdUser.getId()))
+            .body(userDto);
+            
+    } catch (EmailAlreadyExistsException e) {
+        log.warn("Email already exists: {}", request.getEmail());
+        return ResponseEntity.status(HttpStatus.CONFLICT).build();
+    }
+}
+
+// DTOs Producción
+@Data
+@Builder
+public class CreateUserRequest {
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email must be valid")
+    @Size(max = 100)
+    private String email;
+    
+    @NotBlank(message = "Name is required")
+    @Size(min = 2, max = 100)
+    private String name;
+    
+    @NotBlank
+    @Size(min = 8, max = 20)
+    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9]).*$")
+    private String password;
+}
+
+@Data
+@Builder
+public class UserDto {
+    @NotNull
+    private UUID id;  // UUID en vez de Long
+    
+    private String email;
+    private String name;
+    private UserStatus status;
+    
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime createdAt;
+    
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime updatedAt;
+}</code></pre>
+            </div>
+            <div class="comparison-box">
+              <strong>✅ Diferencias Clave:</strong><br>
+              <strong>Básico:</strong> Long ID, validación básica<br>
+              <strong>Producción:</strong> UUID, validaciones detalladas, manejo errores, Location header, logging
+          </div>
+
+          <div class="content-block">
+            <h3>DELETE - Eliminar Usuarios</h3>
+            <div class="example-toggle">
+              <button class="example-btn active" data-example="basic">📚 Ejemplo Básico</button>
+              <button class="example-btn" data-example="production">🏢 Producción</button>
+            </div>
+            
+            <div class="example-content basic active">
+              <h4>DELETE Básico</h4>
+              <pre><code class="language-java">@DeleteMapping("/{id}")
+@ResponseStatus(HttpStatus.NO_CONTENT)
+public void deleteUser(@PathVariable Long id) {
+    userService.delete(id);
+}</code></pre>
+            </div>
+            
+            <div class="example-content production" style="display:none;">
+              <h4>DELETE Producción (Soft Delete)</h4>
+              <pre><code class="language-java">@DeleteMapping("/{userId}")
+@ResponseStatus(HttpStatus.NO_CONTENT)
+public void softDelete(@PathVariable UUID userId) {
+    log.info("Soft deleting user: {}", userId);
+    userService.softDelete(userId);
+    log.info("User soft deleted: {}", userId);
+}</code></pre>
+            </div>
+          </div>
+          
+          <div class="content-block">
+            <h3>PUT vs PATCH</h3>
+            <div class="example-toggle">
+              <button class="example-btn active" data-example="basic">📚 Ejemplo Básico</button>
+              <button class="example-btn" data-example="production">🏢 Producción</button>
+            </div>
+            
+            <div class="example-content basic active">
+              <h4>PUT/PATCH Básico</h4>
+              <pre><code class="language-java">@PutMapping("/{id}")
+public ResponseEntity&lt;UserDto&gt; updateUser(
+    @PathVariable Long id,
+    @Valid @RequestBody UpdateUserRequest request) {
+    return ResponseEntity.ok(userService.update(id, request));
+}
+
+@PatchMapping("/{id}")
+public ResponseEntity&lt;UserDto&gt; updatePartial(
+    @PathVariable Long id,
+    @RequestBody Map&lt;String, Object&gt; updates) {
+    return ResponseEntity.ok(userService.partialUpdate(id, updates));
+}</code></pre>
+            </div>
+            
+            <div class="example-content production" style="display:none;">
+              <h4>PUT/PATCH Producción con UUID</h4>
+              <pre><code class="language-java">@PutMapping("/{userId}")
+public ResponseEntity&lt;UserDto&gt; updateUser(
+    @PathVariable UUID userId,
+    @Valid @RequestBody UpdateUserRequest request
+) {
+    log.info("Updating user: {}", userId);
+    User updated = userService.update(userId, request);
+    log.info("User updated successfully: {}", userId);
+    return ResponseEntity.ok(userMapper.toDto(updated));
+}
+
+@PatchMapping("/{userId}/status")
+public ResponseEntity&lt;UserDto&gt; updateStatus(
+    @PathVariable UUID userId,
+    @RequestBody @Valid StatusUpdateRequest request
+) {
+    log.info("Updating status for user: {} to {}", userId, request.getStatus());
+    User updated = userService.updateStatus(userId, request.getStatus());
+    return ResponseEntity.ok(userMapper.toDto(updated));
+}</code></pre>
+            </div>
+            <div class="comparison-box">
+              <strong>✅ Diferencias:</strong> PUT reemplaza todo, PATCH actualiza campos específicos
+            </div>
+        </section>
+
+        <section id="security" class="section">
+          <h2>🔐 Security &amp; JWT</h2>
+          
+          <div class="content-block">
+            <h3>JWT Provider - Generación y Validación</h3>
+            <div class="example-toggle">
+              <button class="example-btn active" data-example="basic">📚 Básico (String username)</button>
+              <button class="example-btn" data-example="production">🏢 Producción (UUID)</button>
+            </div>
+            
+            <div class="example-content basic active">
+              <h4>JWT Básico con username</h4>
+              <pre><code class="language-java">@Component
+public class JwtProvider {
+    
+    @Value("${app.jwt.secret}")
+    private String secret;
+    
+    private SecretKey key;
+    
+    @PostConstruct
+    public void init() {
+        this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+    }
+    
+    // Generar token de acceso
+    public String generateToken(String username) {
+        return Jwts.builder()
+            .subject(username)
+            .issuedAt(new Date())
+            .expiration(new Date(System.currentTimeMillis() + 86400000))
+            .signWith(key, SignatureAlgorithm.HS512)
+            .compact();
+    }
+    
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token);
+            return true;
+        } catch (JwtException e) {
+            return false;
+        }
+    }
+    
+    public String extractUsername(String token) {
+        return Jwts.parserBuilder()
+            .setSigningKey(key)
+            .build()
+            .parseClaimsJws(token)
+            .getBody()
+            .getSubject();
+    }
+}</code></pre>
+            </div>
+            
+            <div class="example-content production" style="display:none;">
+              <h4>JWT Producción con UUID</h4>
+              <pre><code class="language-java">@Component
+@Slf4j
+public class JwtProvider {
+    
+    @Value("${app.jwt.secret}")
+    private String jwtSecret;
+    
+    @Value("${app.jwt.access-token-expiration}")
+    private long accessTokenExpirationMs;
+    
+    @Value("${app.jwt.refresh-token-expiration}")
+    private long refreshTokenExpirationMs;
+    
+    private SecretKey key;
+    
+    @PostConstruct
+    public void init() {
+        this.key = Keys.hmacShaKeyFor(
+            jwtSecret.getBytes(StandardCharsets.UTF_8)
+        );
+    }
+    
+    public String generateAccessToken(UUID userId, String email, List&lt;String&gt; roles) {
+        log.debug("Generating access token for user: {}", userId);
+        
+        return Jwts.builder()
+            .subject(userId.toString())
+            .claim("email", email)
+            .claim("roles", roles)
+            .claim("type", "access")
+            .issuedAt(new Date())
+            .expiration(new Date(System.currentTimeMillis() + accessTokenExpirationMs))
+            .signWith(key, SignatureAlgorithm.HS512)
+            .compact();
+    }
+    
+    public String generateRefreshToken(UUID userId) {
+        log.debug("Generating refresh token for user: {}", userId);
+        
+        return Jwts.builder()
+            .subject(userId.toString())
+            .claim("type", "refresh")
+            .issuedAt(new Date())
+            .expiration(new Date(System.currentTimeMillis() + refreshTokenExpirationMs))
+            .signWith(key, SignatureAlgorithm.HS512)
+            .compact();
+    }
+    
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token);
+            return true;
+        } catch (JwtException e) {
+            log.error("JWT validation failed: {}", e.getMessage());
+            return false;
+        }
+    }
+    
+    public UUID extractUserId(String token) {
+        try {
+            String userId = Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
+            
+            return UUID.fromString(userId);
+        } catch (IllegalArgumentException e) {
+            log.error("Invalid UUID in token", e);
+            throw new InvalidTokenException("Invalid token format");
+        }
+    }
+    
+    public String extractEmail(String token) {
+        return (String) Jwts.parserBuilder()
+            .setSigningKey(key)
+            .build()
+            .parseClaimsJws(token)
+            .getBody()
+            .get("email");
+    }
+}</code></pre>
+            </div>
+            
+            <div class="comparison-box">
+              <strong>✅ Diferencias Clave:</strong><br>
+              <strong>Básico:</strong> subject = username (String)<br>
+              <strong>Producción:</strong> subject = UUID, más claims (email, roles), access + refresh tokens, validación UUID
+          </div>
+
+          <div class="content-block">
+            <h3>Security Configuration</h3>
+            <div class="example-toggle">
+              <button class="example-btn active" data-example="basic">📚 Básico</button>
+              <button class="example-btn" data-example="production">🏢 Producción</button>
+            </div>
+            
+            <div class="example-content basic active">
+              <h4>Security Config Básico</h4>
+              <pre><code class="language-java">@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+    
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) 
+        throws Exception {
+        http
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(authz -> authz
+                .requestMatchers("/api/auth/**").permitAll()
+                .anyRequest().authenticated()
+            )
+            .sessionManagement(session -> 
+                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            );
+        
+        return http.build();
+    }
+    
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+}</code></pre>
+            </div>
+            
+            <div class="example-content production" style="display:none;">
+              <h4>Security Config Producción</h4>
+              <pre><code class="language-java">@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+    
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) 
+        throws Exception {
+        http
+            .csrf(csrf -> csrf.disable())
+            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+            .authorizeHttpRequests(authz -> authz
+                .requestMatchers("/api/v1/auth/**").permitAll()
+                .requestMatchers("/api/v1/public/**").permitAll()
+                .requestMatchers("/actuator/**").permitAll()
+                .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
+                .requestMatchers("/api/v1/user/**").hasAnyRole("USER", "ADMIN")
+                .anyRequest().authenticated()
+            )
+            .sessionManagement(session -> 
+                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            )
+            .addFilterBefore(
+                jwtAuthenticationFilter(), 
+                UsernamePasswordAuthenticationFilter.class
+            );
+        
+        return http.build();
+    }
+    
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+    
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+        config.setAllowedMethods(Arrays.asList("*"));
+        config.setAllowedHeaders(Arrays.asList("*"));
+        config.setAllowCredentials(true);
+        
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
+    }
+}</code></pre>
+            </div>
+            
+            <div class="comparison-box">
+              <strong>✅ Mejoras en Producción:</strong><br>
+              • CORS configurado<br>
+              • Múltiples roles y permisos<br>
+              • Actuator protegido<br>
+              • JWT filter personalizado
+          </div>
+        </section>
+
+        <section id="database" class="section">
+          <h2>🗄️ SQL Databases</h2>
+          
+          <div class="content-block">
+            <h3>Entidades JPA - Estrategias de ID</h3>
+            <div class="example-toggle">
+              <button class="example-btn active" data-example="basic">📚 Long ID (Básico)</button>
+              <button class="example-btn" data-example="production">🏢 UUID (Producción)</button>
+            </div>
+            
+            <div class="example-content basic active">
+              <h4>Entity con Long ID (Auto-increment)</h4>
+              <pre><code class="language-java">@Entity
+@Table(name = "users")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class User {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column(nullable = false, unique = true)
+    private String email;
+    
+    @Column(nullable = false)
+    private String name;
+    
+    @Column(nullable = false)
+    private String password;
+}</code></pre>
+              <h4>Database Schema</h4>
+              <pre><code class="language-sql">CREATE TABLE users (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);</code></pre>
+            </div>
+            
+            <div class="example-content production" style="display:none;">
+              <h4>Entity con UUID (Producción)</h4>
+              <pre><code class="language-java">@Entity
+@Table(name = "users", indexes = {
+    @Index(name = "idx_email", columnList = "email", unique = true),
+    @Index(name = "idx_created_at", columnList = "created_at")
+})
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@EntityListeners(AuditingEntityListener.class)
+public class User {
+    
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "uuid2")
+    @Column(columnDefinition = "CHAR(36)", updatable = false)
+    private UUID id;
+    
+    @Column(nullable = false, unique = true, length = 100)
+    private String email;
+    
+    @Column(nullable = false, length = 100)
+    private String name;
+    
+    @Column(nullable = false)
+    private String password;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private UserStatus status = UserStatus.ACTIVE;
+    
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+    
+    @LastModifiedDate
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
+    
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
+}</code></pre>
+              <h4>Database Schema (Flyway Migration)</h4>
+              <pre><code class="language-sql">CREATE TABLE users (
+    id CHAR(36) PRIMARY KEY COMMENT 'UUID',
+    email VARCHAR(100) UNIQUE NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP NULL,
+    
+    KEY idx_email (email),
+    KEY idx_created_at (created_at),
+    KEY idx_deleted_at (deleted_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</code></pre>
+            </div>
+            
+            <div class="comparison-box">
+              <strong>✅ ¿Por qué UUID en Producción?</strong><br>
+              • <strong>Sistemas distribuidos:</strong> Generar IDs sin coordinación entre servidores<br>
+              • <strong>Seguridad:</strong> Más difícil predecir IDs<br>
+              • <strong>Privacidad:</strong> No revela cuántos registros existen<br>
+              • <strong>Microservicios:</strong> Cada servicio genera IDs únicos<br>
+              • <strong>Replicación:</strong> Sin conflictos entre bases de datos
+            </div>
+          </div>
+          
+          <div class="content-block">
+            <h3>Repositories - Básico vs Producción</h3>
+            <div class="example-toggle">
+              <button class="example-btn active" data-example="basic">📚 Long ID</button>
+              <button class="example-btn" data-example="production">🏢 UUID</button>
+            </div>
+            
+            <div class="example-content basic active">
+              <h4>Repository Básico</h4>
+              <pre><code class="language-java">@Repository
+public interface UserRepository extends JpaRepository&lt;User, Long&gt; {
+    Optional&lt;User&gt; findByEmail(String email);
+    List&lt;User&gt; findByStatus(UserStatus status);
+}</code></pre>
+            </div>
+            
+            <div class="example-content production" style="display:none;">
+              <h4>Repository Producción con UUID</h4>
+              <pre><code class="language-java">@Repository
+public interface UserRepository extends 
+    JpaRepository&lt;User, UUID&gt;,
+    JpaSpecificationExecutor&lt;User&gt; {
+    
+    Optional&lt;User&gt; findByEmail(String email);
+    
+    Optional&lt;User&gt; findByEmailAndDeletedAtIsNull(String email);
+    
+    @Query("SELECT u FROM User u WHERE u.status = :status AND u.deletedAt IS NULL")
+    List&lt;User&gt; findActiveByStatus(@Param("status") UserStatus status);
+    
+    Page&lt;User&gt; findByNameContainingIgnoreCaseAndDeletedAtIsNull(
+        String name, Pageable pageable);
+    
+    @Modifying
+    @Query("UPDATE User u SET u.status = 'INACTIVE' WHERE u.deletedAt IS NOT NULL")
+    int deactivateDeletedUsers();
+    
+    long countByStatusAndDeletedAtIsNull(UserStatus status);
+}</code></pre>
+            </div>
+          </div>
+          
+          <div class="content-block">
+            <h3>Service Layer - Básico vs Producción</h3>
+            <div class="example-toggle">
+              <button class="example-btn active" data-example="basic">📚 Básico</button>
+              <button class="example-btn" data-example="production">🏢 Producción</button>
+            </div>
+            
+            <div class="example-content basic active">
+              <h4>Service Básico</h4>
+              <pre><code class="language-java">@Service
+@RequiredArgsConstructor
+public class UserService {
+    private final UserRepository userRepository;
+    
+    public UserDto create(CreateUserRequest request) {
+        User user = User.builder()
+            .email(request.getEmail())
+            .name(request.getName())
+            .build();
+        return toDto(userRepository.save(user));
+    }
+    
+    public Optional&lt;UserDto&gt; findById(Long id) {
+        return userRepository.findById(id).map(this::toDto);
+    }
+}</code></pre>
+            </div>
+            
+            <div class="example-content production" style="display:none;">
+              <h4>Service Producción con UUID</h4>
+              <pre><code class="language-java">@Service
+@Slf4j
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
+public class UserService {
+    
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final UserMapper userMapper;
+    
+    @Transactional
+    public User create(CreateUserRequest request) {
+        log.info("Creating new user: {}", request.getEmail());
+        
+        // Validación
+        if (userRepository.findByEmailAndDeletedAtIsNull(request.getEmail()).isPresent()) {
+            log.warn("Email already exists: {}", request.getEmail());
+            throw new EmailAlreadyExistsException("Email is already registered");
+        }
+        
+        try {
+            UUID userId = UUID.randomUUID();
+            
+            User user = User.builder()
+                .id(userId)
+                .email(request.getEmail())
+                .name(request.getName())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .status(UserStatus.ACTIVE)
+                .build();
+            
+            User savedUser = userRepository.save(user);
+            log.info("User created successfully: {}", userId);
+            
+            return savedUser;
+            
+        } catch (DataIntegrityViolationException e) {
+            log.error("Constraint violation while creating user", e);
+            throw new UserCreationException("Failed to create user", e);
+        }
+    }
+    
+    public Optional&lt;User&gt; findById(UUID userId) {
+        log.debug("Finding user by ID: {}", userId);
+        
+        if (userId == null) {
+            log.warn("User ID is null");
+            return Optional.empty();
+        }
+        
+        return userRepository.findById(userId)
+            .filter(user -> user.getDeletedAt() == null);
+    }
+    
+    @Transactional
+    public void softDelete(UUID userId) {
+        log.info("Soft deleting user: {}", userId);
+        
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        
+        user.setDeletedAt(LocalDateTime.now());
+        userRepository.save(user);
+        
+        log.info("User soft deleted: {}", userId);
+    }
+}</code></pre>
+            </div>
+          </div>
+          
+          <div class="content-block">
+            <h3>Comandos Maven vs Gradle</h3>
+            <div class="build-commands">
+              <div class="command-group">
+                <h4>📦 Maven</h4>
+                <pre><code class="language-bash"># Build
+mvn clean package
+
+# Run
+mvn spring-boot:run
+
+# Test
+mvn test
+
+# Skip tests
+mvn clean package -DskipTests</code></pre>
+              </div>
+              <div class="command-group">
+                <h4>🐘 Gradle</h4>
+                <pre><code class="language-bash"># Build
+gradle clean build
+
+# Run
+gradle bootRun
+
+# Test
+gradle test
+
+# Skip tests
+gradle clean build -x test</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="docker" class="section">
+          <h2>🐳 Docker &amp; Kubernetes</h2>
+          
+          <div class="content-block">
+            <h3>Dockerfile Multi-Stage</h3>
+            <div class="example-toggle">
+              <button class="example-btn active" data-example="basic">📚 Maven</button>
+              <button class="example-btn" data-example="production">🐘 Gradle</button>
+            </div>
+            
+            <div class="example-content basic active">
+              <h4>Dockerfile con Maven</h4>
+              <pre><code class="language-dockerfile"># Build stage
+FROM eclipse-temurin:21-jdk-alpine AS builder
+WORKDIR /app
+COPY pom.xml .
+COPY src src
+RUN ./mvnw clean package -DskipTests
+
+# Runtime stage
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+COPY --from=builder /app/target/*.jar app.jar
+
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]</code></pre>
+            </div>
+            
+            <div class="example-content production" style="display:none;">
+              <h4>Dockerfile con Gradle</h4>
+              <pre><code class="language-dockerfile"># Build stage
+FROM eclipse-temurin:21-jdk-alpine AS builder
+WORKDIR /app
+COPY build.gradle settings.gradle gradlew .
+COPY gradle gradle
+COPY src src
+RUN ./gradlew clean build -x test
+
+# Runtime stage
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+COPY --from=builder /app/build/libs/*.jar app.jar
+
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+USER appuser
+
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]</code></pre>
+            </div>
+          </div>
+          
+          <div class="content-block">
+            <h3>Docker Compose</h3>
+            <pre><code class="language-yaml">version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+  
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+  
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+      - redis
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mydb
+      SPRING_REDIS_HOST: redis
+
+volumes:
+  mysql_data:</code></pre>
+          </div>
+        </section>
+        
+        <section id="nosql" class="section">
+          <h2>📦 NoSQL &amp; MongoDB</h2>
+          
+          <div class="content-block">
+            <h3>MongoDB Configuration</h3>
+            <pre><code class="language-yaml">spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/mydb
+      auto-index-creation: true</code></pre>
+          </div>
+
+          <div class="content-block">
+            <h3>MongoDB Document</h3>
+            <pre><code class="language-java">@Document(collection = "users")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class MongoUser {
+    
+    @Id
+    private String id;
+    
+    @Indexed(unique = true)
+    private String email;
+    
+    private String name;
+    private List&lt;String&gt; roles;
+    
+    @CreatedDate
+    private LocalDateTime createdAt;
+}</code></pre>
+          </div>
+
+          <div class="content-block">
+            <h3>MongoDB Repository</h3>
+            <pre><code class="language-java">@Repository
+public interface MongoUserRepository extends MongoRepository&lt;MongoUser, String&gt; {
+    
+    Optional&lt;MongoUser&gt; findByEmail(String email);
+    
+    @Query("{ 'status': ?0 }")
+    List&lt;MongoUser&gt; findByCustomQuery(String status);
+    
+    Page&lt;MongoUser&gt; findByNameContainingIgnoreCase(String name, Pageable pageable);
+}</code></pre>
+            <div class="tip-box">
+              <strong>💡 Tip:</strong> MongoDB es ideal para datos no estructurados y esquemas flexibles
+            </div>
+          </div>
+        </section>
+
+        <section id="redis" class="section">
+          <h2>⚡ Redis Cache</h2>
+          
+          <div class="content-block">
+            <h3>Redis Configuration</h3>
+            <pre><code class="language-yaml">spring:
+  cache:
+    type: redis
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: ${REDIS_PASSWORD:}
+      jedis:
+        pool:
+          max-active: 20
+          max-idle: 10</code></pre>
+          </div>
+
+          <div class="content-block">
+            <h3>Cache Annotations</h3>
+            <pre><code class="language-java">@Service
+@RequiredArgsConstructor
+public class UserService {
+    
+    private final UserRepository userRepository;
+    
+    @Cacheable(value = "users", key = "#id")
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
+    
+    @CachePut(value = "users", key = "#result.id")
+    public User updateUser(User user) {
+        return userRepository.save(user);
+    }
+    
+    @CacheEvict(value = "users", key = "#id")
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
+    
+    @CacheEvict(value = "users", allEntries = true)
+    public void clearAllCache() {
+        // Clear all entries
+    }
+}</code></pre>
+            <div class="tip-box">
+              <strong>💡 Tip:</strong> Usa @Cacheable para operaciones de lectura intensiva, configura TTL apropiado
+            </div>
+          </div>
+        </section>
+
+        <section id="microservices" class="section">
+          <h2>🏗️ Microservicios</h2>
+          
+          <div class="content-block">
+            <h3>Eureka Service Discovery</h3>
+            <pre><code class="language-yaml"># Eureka Server
+server:
+  port: 8761
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+# Eureka Client (Each Service)
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 30</code></pre>
+          </div>
+
+          <div class="content-block">
+            <h3>Spring Cloud Gateway</h3>
+            <pre><code class="language-yaml">spring:
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/users/**
+          filters:
+            - StripPrefix=1
+        
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/api/orders/**</code></pre>
+          </div>
+
+          <div class="content-block">
+            <h3>Circuit Breaker (Resilience4j)</h3>
+            <pre><code class="language-java">@Service
+@RequiredArgsConstructor
+public class PaymentService {
+    
+    private final RestTemplate restTemplate;
+    
+    @CircuitBreaker(
+        name = "paymentService",
+        fallbackMethod = "paymentFallback"
+    )
+    public PaymentResponse processPayment(Payment payment) {
+        return restTemplate.postForObject(
+            "http://payment-service/api/payments",
+            payment,
+            PaymentResponse.class
+        );
+    }
+    
+    public PaymentResponse paymentFallback(
+        Payment payment, Exception e) {
+        return PaymentResponse.builder()
+            .status("PENDING")
+            .message("Service unavailable")
+            .build();
+    }
+}</code></pre>
+            <div class="tip-box">
+              <strong>💡 Tip:</strong> Circuit Breaker protege tu sistema de cascadas de fallos
+            </div>
+          </div>
+        </section>
+
+        <section id="docker" class="section">
+          <h2>🐳 Docker &amp; Kubernetes</h2>
+          
+          <div class="content-block">
+            <h3>Dockerfile Multi-Stage</h3>
+            <pre><code class="language-dockerfile"># Build stage
+FROM eclipse-temurin:21-jdk-alpine AS builder
+WORKDIR /app
+COPY pom.xml .
+COPY .mvn .mvn
+COPY src src
+RUN ./mvn clean package -DskipTests
+
+# Runtime stage
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+COPY --from=builder /app/target/*.jar app.jar
+
+RUN addgroup -S appgroup &amp;&amp; adduser -S appuser -G appgroup
+USER appuser
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]</code></pre>
+          </div>
+
+          <div class="content-block">
+            <h3>Docker Compose Full Stack</h3>
+            <pre><code class="language-yaml">version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+  
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+  
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+      - redis
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mydb
+
+volumes:
+  mysql_data:</code></pre>
+          </div>
+
+          <div class="content-block">
+            <h3>Kubernetes Deployment</h3>
+            <pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: spring-boot-app
+  template:
+    metadata:
+      labels:
+        app: spring-boot-app
+    spec:
+      containers:
+      - name: spring-boot-app
+        image: myregistry/spring-boot-app:1.0
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_DATASOURCE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: db-url
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"</code></pre>
+            <div class="tip-box">
+              <strong>💡 Tip:</strong> Usa multi-stage builds para imágenes más pequeñas y seguras
+            </div>
+          </div>
+        </section>
+
+        <section id="cloud" class="section">
+          <h2>☁️ Cloud Deployment</h2>
+          
+          <div class="content-block">
+            <h3>AWS Deployment Options</h3>
+            <pre><code class="language-bash"># ECS (Elastic Container Service)
+docker build -t my-app:1.0 .
+docker tag my-app:1.0 123456789.dkr.ecr.us-east-1.amazonaws.com/my-app:1.0
+docker push 123456789.dkr.ecr.us-east-1.amazonaws.com/my-app:1.0
+
+# EKS (Elastic Kubernetes Service)
+aws eks create-cluster --name my-cluster --version 1.27
+kubectl apply -f deployment.yaml
+
+# RDS (MySQL Database)
+aws rds create-db-instance --db-instance-identifier mydb --engine mysql</code></pre>
+          </div>
+
+          <div class="content-block">
+            <h3>Azure Deployment</h3>
+            <pre><code class="language-bash"># App Service
+az webapp create --name myapp --plan myplan
+
+# AKS (Kubernetes)
+az aks create --resource-group mygroup --name mycluster
+
+# SQL Database
+az sql server create --name myserver --resource-group mygroup</code></pre>
+          </div>
+
+          <div class="content-block">
+            <h3>Google Cloud Platform</h3>
+            <pre><code class="language-bash"># Cloud Run
+gcloud run deploy spring-boot-app --image gcr.io/project/app:1.0
+
+# GKE (Kubernetes)
+gcloud container clusters create my-cluster
+
+# Cloud SQL
+gcloud sql instances create mydb --database-version MYSQL_8_0</code></pre>
+            <div class="tip-box">
+              <strong>💡 Tip:</strong> Usa managed services para databases y reducir overhead operacional
+            </div>
+          </div>
+        </section>
+
+        <section id="cicd" class="section">
+          <h2>🔄 CI/CD Pipelines</h2>
+          
+          <div class="content-block">
+            <h3>GitHub Actions Workflow</h3>
+            <div class="example-toggle">
+              <button class="example-btn active" data-example="basic">📦 Maven</button>
+              <button class="example-btn" data-example="production">🐘 Gradle</button>
+            </div>
+            
+            <div class="example-content basic active">
+              <h4>GitHub Actions con Maven</h4>
+              <pre><code class="language-yaml">name: CI/CD Pipeline
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 21
+      uses: actions/setup-java@v3
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+    - name: Build with Maven
+      run: mvn clean package
+    - name: Run tests
+      run: mvn test
+    - name: Build Docker image
+      run: docker build -t my-app:${{ github.sha }} .</code></pre>
+            </div>
+            
+            <div class="example-content production" style="display:none;">
+              <h4>GitHub Actions con Gradle</h4>
+              <pre><code class="language-yaml">name: CI/CD Pipeline
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 21
+      uses: actions/setup-java@v3
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
+    - name: Build with Gradle
+      run: ./gradlew clean build
+    - name: Run tests
+      run: ./gradlew test
+    - name: Build Docker image
+      run: docker build -t my-app:${{ github.sha }} .</code></pre>
+            </div>
+          </div>
+
+          <div class="content-block">
+            <h3>Jenkins Pipeline</h3>
+            <div class="example-toggle">
+              <button class="example-btn active" data-example="basic">📦 Maven</button>
+              <button class="example-btn" data-example="production">🐘 Gradle</button>
+            </div>
+            
+            <div class="example-content basic active">
+              <h4>Jenkins con Maven</h4>
+              <pre><code class="language-groovy">pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'kubectl apply -f deployment.yaml'
+            }
+        }
+    }
+}</code></pre>
+            </div>
+            
+            <div class="example-content production" style="display:none;">
+              <h4>Jenkins con Gradle</h4>
+              <pre><code class="language-groovy">pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh './gradlew clean build'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh './gradlew test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'kubectl apply -f deployment.yaml'
+            }
+        }
+    }
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="content-block">
+            <h3>Azure DevOps Pipeline</h3>
+            <div class="example-toggle">
+              <button class="example-btn active" data-example="basic">📦 Maven</button>
+              <button class="example-btn" data-example="production">🐘 Gradle</button>
+            </div>
+            
+            <div class="example-content basic active">
+              <h4>Azure DevOps con Maven</h4>
+              <pre><code class="language-yaml">trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'clean package'
+    
+- task: Docker@2
+  inputs:
+    command: 'buildAndPush'
+    repository: 'my-app'
+    tags: '$(Build.BuildId)'</code></pre>
+            </div>
+            
+            <div class="example-content production" style="display:none;">
+              <h4>Azure DevOps con Gradle</h4>
+              <pre><code class="language-yaml">trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: Gradle@2
+  inputs:
+    workingDirectory: ''
+    gradleWrapperFile: 'gradlew'
+    tasks: 'clean build'
+    
+- task: Docker@2
+  inputs:
+    command: 'buildAndPush'
+    repository: 'my-app'
+    tags: '$(Build.BuildId)'</code></pre>
+            </div>
+            
+            <div class="tip-box">
+              <strong>💡 Tip:</strong> Automatiza tests, builds y deploys para mayor confiabilidad
+          </div>
+        </section>
+
+        <section id="testing" class="section">
+          <h2>✅ Testing Completo</h2>
+          
+          <div class="content-block">
+            <h3>Unit Tests con JUnit 5 &amp; Mockito</h3>
+            <div class="example-toggle">
+              <button class="example-btn active" data-example="basic">📚 Long ID</button>
+              <button class="example-btn" data-example="production">🏢 UUID</button>
+            </div>
+            
+            <div class="example-content basic active">
+              <h4>Unit Test Básico</h4>
+              <pre><code class="language-java">@ExtendWith(MockitoExtension.class)
+class UserServiceTest {
+    
+    @Mock
+    private UserRepository userRepository;
+    
+    @InjectMocks
+    private UserService userService;
+    
+    @Test
+    void testCreateUser() {
+        CreateUserRequest request = new CreateUserRequest();
+        request.setEmail("test@example.com");
+        request.setName("Test User");
+        
+        User user = new User();
+        user.setId(1L);
+        user.setEmail("test@example.com");
+        
+        when(userRepository.save(any())).thenReturn(user);
+        
+        UserDto result = userService.create(request);
+        
+        assertNotNull(result);
+        assertEquals("test@example.com", result.getEmail());
+    }
+}</code></pre>
+            </div>
+            
+            <div class="example-content production" style="display:none;">
+              <h4>Unit Test Producción con UUID</h4>
+              <pre><code class="language-java">@ExtendWith(MockitoExtension.class)
+class UserServiceTest {
+    
+    @Mock
+    private UserRepository userRepository;
+    
+    @Mock
+    private PasswordEncoder passwordEncoder;
+    
+    @Mock
+    private UserMapper userMapper;
+    
+    @InjectMocks
+    private UserService userService;
+    
+    private UUID testUserId;
+    
+    @BeforeEach
+    void setUp() {
+        testUserId = UUID.randomUUID();
+    }
+    
+    @Test
+    void testCreateUser_Success() {
+        // Given
+        CreateUserRequest request = CreateUserRequest.builder()
+            .email("test@example.com")
+            .name("Test User")
+            .password("Password123!")
+            .build();
+        
+        User user = User.builder()
+            .id(testUserId)
+            .email("test@example.com")
+            .name("Test User")
+            .status(UserStatus.ACTIVE)
+            .build();
+        
+        when(userRepository.findByEmailAndDeletedAtIsNull(anyString()))
+            .thenReturn(Optional.empty());
+        when(passwordEncoder.encode(anyString()))
+            .thenReturn("encoded_password");
+        when(userRepository.save(any(User.class)))
+            .thenReturn(user);
+        
+        // When
+        User result = userService.create(request);
+        
+        // Then
+        assertNotNull(result);
+        assertNotNull(result.getId());
+        assertEquals("test@example.com", result.getEmail());
+        assertEquals(UserStatus.ACTIVE, result.getStatus());
+        
+        verify(userRepository).findByEmailAndDeletedAtIsNull("test@example.com");
+        verify(passwordEncoder).encode("Password123!");
+        verify(userRepository).save(any(User.class));
+    }
+    
+    @Test
+    void testCreateUser_EmailAlreadyExists() {
+        // Given
+        CreateUserRequest request = CreateUserRequest.builder()
+            .email("existing@example.com")
+            .name("Test User")
+            .password("Password123!")
+            .build();
+        
+        User existingUser = User.builder()
+            .id(testUserId)
+            .email("existing@example.com")
+            .build();
+        
+        when(userRepository.findByEmailAndDeletedAtIsNull("existing@example.com"))
+            .thenReturn(Optional.of(existingUser));
+        
+        // When & Then
+        assertThrows(EmailAlreadyExistsException.class, () -> {
+            userService.create(request);
+        });
+        
+        verify(userRepository, never()).save(any(User.class));
+    }
+    
+    @Test
+    void testFindById_UserExists() {
+        // Given
+        User user = User.builder()
+            .id(testUserId)
+            .email("test@example.com")
+            .build();
+        
+        when(userRepository.findById(testUserId))
+            .thenReturn(Optional.of(user));
+        
+        // When
+        Optional&lt;User&gt; result = userService.findById(testUserId);
+        
+        // Then
+        assertTrue(result.isPresent());
+        assertEquals(testUserId, result.get().getId());
+    }
+    
+    @Test
+    void testSoftDelete() {
+        // Given
+        User user = User.builder()
+            .id(testUserId)
+            .email("test@example.com")
+            .build();
+        
+        when(userRepository.findById(testUserId))
+            .thenReturn(Optional.of(user));
+        when(userRepository.save(any(User.class)))
+            .thenAnswer(invocation -> invocation.getArgument(0));
+        
+        // When
+        userService.softDelete(testUserId);
+        
+        // Then
+        verify(userRepository).findById(testUserId);
+        verify(userRepository).save(argThat(u -> u.getDeletedAt() != null));
+    }
+}</code></pre>
+            </div>
+            
+            <div class="comparison-box">
+              <strong>✅ Diferencias en Testing:</strong><br>
+              <strong>Básico:</strong> Test simple con Long ID<br>
+              <strong>Producción:</strong> UUID fixtures, múltiples escenarios, validaciones completas, verificación de mocks
+          </div>
+
+          <div class="content-block">
+            <h3>Integration Tests</h3>
+            <div class="example-toggle">
+              <button class="example-btn active" data-example="basic">📚 Básico</button>
+              <button class="example-btn" data-example="production">🏢 Producción</button>
+            </div>
+            
+            <div class="example-content basic active">
+              <h4>Integration Test Básico</h4>
+              <pre><code class="language-java">@SpringBootTest
+@AutoConfigureMockMvc
+class UserControllerIntegrationTest {
+    
+    @Autowired
+    private MockMvc mockMvc;
+    
+    @Test
+    void testCreateUserAPI() throws Exception {
+        mockMvc.perform(post("/api/users")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{\"email\":\"test@example.com\",\"name\":\"Test\"}"))
+            .andExpect(status().isCreated());
+    }
+}</code></pre>
+            </div>
+            
+            <div class="example-content production" style="display:none;">
+              <h4>Integration Test Producción con Testcontainers</h4>
+              <pre><code class="language-java">@SpringBootTest
+@AutoConfigureMockMvc
+@Testcontainers
+class UserControllerIntegrationTest {
+    
+    @Autowired
+    private MockMvc mockMvc;
+    
+    @Autowired
+    private UserRepository userRepository;
+    
+    @Container
+    static MySQLContainer&lt;?&gt; mysql = new MySQLContainer&lt;&gt;("mysql:8.0")
+        .withDatabaseName("testdb")
+        .withUsername("test")
+        .withPassword("test");
+    
+    @DynamicPropertySource
+    static void configureProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", mysql::getJdbcUrl);
+        registry.add("spring.datasource.username", mysql::getUsername);
+        registry.add("spring.datasource.password", mysql::getPassword);
+    }
+    
+    @Test
+    void testCreateUser_Success() throws Exception {
+        String requestBody = """{
+            "email": "test@example.com",
+            "name": "Test User",
+            "password": "Password123!"
+        }""";
+        
+        mockMvc.perform(post("/api/v1/users")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(requestBody))
+            .andExpect(status().isCreated())
+            .andExpect(jsonPath("$.id").exists())
+            .andExpect(jsonPath("$.email").value("test@example.com"))
+            .andExpect(jsonPath("$.status").value("ACTIVE"));
+    }
+    
+    @Test
+    void testGetUser_Success() throws Exception {
+        // Given
+        UUID userId = UUID.randomUUID();
+        User user = User.builder()
+            .id(userId)
+            .email("test@example.com")
+            .name("Test User")
+            .password("encoded_password")
+            .status(UserStatus.ACTIVE)
+            .build();
+        userRepository.save(user);
+        
+        // When & Then
+        mockMvc.perform(get("/api/v1/users/" + userId))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.id").value(userId.toString()))
+            .andExpect(jsonPath("$.email").value("test@example.com"));
+    }
+    
+    @Test
+    void testGetUser_NotFound() throws Exception {
+        UUID nonExistentId = UUID.randomUUID();
+        
+        mockMvc.perform(get("/api/v1/users/" + nonExistentId))
+            .andExpect(status().isNotFound());
+    }
+    
+    @Test
+    void testCreateUser_DuplicateEmail() throws Exception {
+        // Given - Create first user
+        User existingUser = User.builder()
+            .id(UUID.randomUUID())
+            .email("duplicate@example.com")
+            .name("Existing User")
+            .password("password")
+            .status(UserStatus.ACTIVE)
+            .build();
+        userRepository.save(existingUser);
+        
+        // When & Then - Try to create duplicate
+        String requestBody = """{
+            "email": "duplicate@example.com",
+            "name": "New User",
+            "password": "Password123!"
+        }""";
+        
+        mockMvc.perform(post("/api/v1/users")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(requestBody))
+            .andExpect(status().isConflict());
+    }
+}</code></pre>
+            </div>
+            
+            <div class="tip-box">
+              <strong>💡 Tip:</strong> Testcontainers permite testing con databases reales en Docker, ideal para CI/CD
+          </div>
+        </section>
+
+        <section id="performance" class="section">
+          <h2>⚡ Performance &amp; Monitoring</h2>
+          
+          <div class="content-block">
+            <h3>Virtual Threads (Java 21)</h3>
+            <pre><code class="language-yaml">spring:
+  threads:
+    virtual:
+      enabled: true</code></pre>
+            <pre><code class="language-java">@Service
+@Async
+public class AsyncTaskService {
+    
+    public CompletableFuture&lt;User&gt; fetchUserAsync(Long id) {
+        return CompletableFuture.supplyAsync(() -> {
+            return userRepository.findById(id).orElse(null);
+        });
+    }
+}</code></pre>
+          </div>
+
+          <div class="content-block">
+            <h3>Caching Estrategias</h3>
+            <pre><code class="language-java">@Configuration
+@EnableCaching
+public class CacheConfig {
+    
+    @Bean
+    public CacheManager cacheManager(RedisConnectionFactory factory) {
+        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
+            .entryTtl(Duration.ofMinutes(10))
+            .serializeValuesWith(
+                RedisSerializationContext.SerializationPair
+                    .fromSerializer(new GenericJackson2JsonRedisSerializer())
+            );
+        
+        return RedisCacheManager.builder(factory)
+            .cacheDefaults(config)
+            .build();
+    }
+}</code></pre>
+          </div>
+
+          <div class="content-block">
+            <h3>Monitoring con Prometheus &amp; Grafana</h3>
+            <pre><code class="language-yaml">management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: ${spring.application.name}</code></pre>
+            <pre><code class="language-bash"># Acceder a métricas
+curl http://localhost:8080/actuator/prometheus
+
+# Health check
+curl http://localhost:8080/actuator/health</code></pre>
+            <div class="tip-box">
+              <strong>💡 Tip:</strong> Virtual Threads mejoran significativamente el throughput en I/O
+            </div>
+          </div>
+        </section>
+
+        <section id="commands" class="section">
+          <h2>💻 Comandos Útiles</h2>
+          
+          <div class="content-block">
+            <h3>Maven Commands</h3>
+            <pre><code class="language-bash"># Build project
+mvn clean package
+
+# Run tests
+mvn test
+
+# Run application
+mvn spring-boot:run
+
+# View dependencies
+mvn dependency:tree
+
+# Skip tests during build
+mvn clean package -DskipTests
+
+# Install to local repository
+mvn clean install
+
+# Update dependencies
+mvn versions:display-dependency-updates</code></pre>
+          </div>
+
+          <div class="content-block">
+            <h3>Docker Commands</h3>
+            <pre><code class="language-bash"># Build image
+docker build -t my-app:1.0 .
+
+# Run container
+docker run -p 8080:8080 my-app:1.0
+
+# Run with environment variables
+docker run -p 8080:8080 -e SPRING_PROFILES_ACTIVE=prod my-app:1.0
+
+# Docker Compose
+docker-compose up -d
+docker-compose down
+docker-compose logs -f app
+
+# List containers
+docker ps
+
+# Stop all containers
+docker stop $(docker ps -aq)
+
+# Remove all containers
+docker rm $(docker ps -aq)</code></pre>
+          </div>
+
+          <div class="content-block">
+            <h3>Kubernetes Commands</h3>
+            <pre><code class="language-bash"># Apply deployment
+kubectl apply -f deployment.yaml
+
+# View pods
+kubectl get pods
+kubectl get pods -w  # watch mode
+
+# View services
+kubectl get svc
+
+# Scale deployment
+kubectl scale deployment spring-boot-app --replicas=5
+
+# View logs
+kubectl logs -f pod-name
+kubectl logs -f deployment/spring-boot-app
+
+# Describe resources
+kubectl describe pod pod-name
+kubectl describe deployment spring-boot-app
+
+# Port forwarding
+kubectl port-forward pod-name 8080:8080
+
+# Delete resources
+kubectl delete -f deployment.yaml</code></pre>
+          </div>
+
+          <div class="content-block">
+            <h3>Git Commands (Workflows)</h3>
+            <pre><code class="language-bash"># Feature branch workflow
+git checkout -b feature/new-endpoint
+git add .
+git commit -m "Add new user endpoint"
+git push origin feature/new-endpoint
+
+# Update from main
+git checkout main
+git pull origin main
+git checkout feature/new-endpoint
+git rebase main
+
+# Squash commits
+git rebase -i HEAD~3</code></pre>
+            <div class="tip-box">
+              <strong>💡 Tip:</strong> Usa alias de Git para comandos frecuentes y aumenta productividad
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
